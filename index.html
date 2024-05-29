@@ -1,0 +1,61 @@
+<!-- user interface to search bookmarks -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Bookmark Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+        #searchBox {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        #searchResults {
+            margin-top: 20px;
+        }
+        .bookmark {
+            padding: 10px;
+            margin-top: 5px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="searchBox" placeholder="Search bookmarks...">
+    <div id="searchResults"></div>
+    
+    <script>
+        document.getElementById('searchBox').addEventListener('input', function() {
+            const searchTerm = this.value;
+            chrome.runtime.sendMessage({action: "searchBookmarks", query: searchTerm}, function(response) {
+                displayResults(response.bookmarks);
+            });
+        });
+        
+        function displayResults(bookmarks) {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Clear previous results
+            bookmarks.forEach(bookmark => {
+                const elem = document.createElement('div');
+                elem.className = 'bookmark';
+                elem.textContent = bookmark.title; // Assuming each bookmark has a 'title'
+                resultsContainer.appendChild(elem);
+            });
+        }
+        </script>
+        
+</body>
+</html>
