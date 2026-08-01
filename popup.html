@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Threadfinder</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div class="wordmark"><span class="mark">✦</span> threadfinder</div>
+        <button id="sync" class="sync" title="Open X Bookmarks and refresh your private index">Sync</button>
+      </header>
+      <section class="intro">
+        <p class="eyebrow">YOUR PRIVATE ARCHIVE</p>
+        <h1>Find the post<br>you saved for later.</h1>
+        <p id="index-meta" class="index-meta">No bookmarks indexed yet.</p>
+      </section>
+      <label class="search-wrap" for="query">
+        <span>⌕</span>
+        <input id="query" autocomplete="off" placeholder="Search words, people, ideas…" />
+        <kbd>⌘ K</kbd>
+      </label>
+      <p id="status" class="status" aria-live="polite"></p>
+      <section id="results" class="results" aria-live="polite"></section>
+      <footer>Stored locally in this browser · <button id="clear" class="text-button">clear index</button></footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
